@@ -62,7 +62,7 @@ class Blockchain {
     this.chain.forEach((block) => {
       if (block.propertyID === propertyID) {
         // console.log(block.transaction)
-        transactionList.push(block.transaction[0]);
+        transactionList.push(block.transaction[block.transaction.length - 1]);
       }
     });
     // console.log(util.inspect(transactionList, false, null, true));
@@ -75,7 +75,7 @@ const bc = new Blockchain();
 bc.addNewBlock("prop2", "saksham");
 bc.addNewBlock("prop3", "sheikh");
 bc.addExisitingBlock("prop2", "shaurya");
-
+bc.addExisitingBlock("prop2", "saksham")
 // console.log(bc.getTransactionHistory("prop2"))
 console.log(util.inspect(bc, false, null, true));
 
