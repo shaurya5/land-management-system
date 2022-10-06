@@ -41,6 +41,17 @@ class Blockchain {
     const newBlock = new Block(time, prevHash, transaction, propertyID);
     this.chain.push(newBlock)
   }
+
+  // replace propertyid here with inputid
+  getTransactionHistory(inputId) {
+    var history = [];
+    for(const block of this.chain){
+      if(block.propertyID==inputId){
+        console.log(block.JSON.stringify(Transaction));
+        history.push(Transaction);
+      }
+    }
+  }
 }
 
 const bc = new Blockchain()
