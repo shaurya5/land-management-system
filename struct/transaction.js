@@ -1,5 +1,5 @@
 class Transaction {
-  constructor(timestamp, sellerID = null, buyerID = null) {
+  constructor(timestamp, sellerID, buyerID) {
     this.buyerID = buyerID // string
     this.sellerID = sellerID // string
     // this.propertyID = propertyID // string
