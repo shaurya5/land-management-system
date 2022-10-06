@@ -1,5 +1,8 @@
+const { Blockchain } = require('../struct/blockchain')
+const util = require('util')
+
 function getTimeNow() {
-  return  Date.now().toString()
+  return Date.now().toString()
 }
 
 function convertUnixTime(time) {
@@ -12,7 +15,13 @@ function convertUnixTime(time) {
   return formattedTime
 }
 
+function printBlockchain() {
+  // const bc = new Blockchain()
+  // console.log(util.inspect(bc, false, null, true));
+}
+
 module.exports = {
   getTimeNow,
-  convertUnixTime
+  convertUnixTime,
+  printBlockchain
 }

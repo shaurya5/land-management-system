@@ -16,9 +16,6 @@ class Block {
   }
 }
 
-// const fkUJohar = new Block(getTimeNow(), "1", { name: "dharmesh bhosdiwala" }, "chutiya dharmesh")
-// console.log(fkUJohar)
-
 module.exports = {
   Block
 }
