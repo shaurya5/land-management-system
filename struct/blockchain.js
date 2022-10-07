@@ -70,25 +70,16 @@ class Blockchain {
     return transactionList;
   }
 }
-// function greet() {
-  
-// }
 
-// setInterval(greet, 1000);
 
 const bc = new Blockchain();
 
 bc.addNewBlock("prop2", "saksham");
-
-// setInterval(greet, 1000);
-// clearInterval()
 bc.addNewBlock("prop3", "sheikh");
-// setInterval(greet, 1000);
-// clearInterval()
 bc.addExisitingBlock("prop2", "shaurya");
-// setInterval(greet, 1000);
-// clearInterval();
 bc.addExisitingBlock("prop2", "saksham")
+
+
 // console.log(bc.getTransactionHistory("prop2"))
 console.log(util.inspect(bc, false, null, true));
 
