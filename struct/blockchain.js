@@ -1,7 +1,8 @@
-const { getTimeNow } = require("../helpers/helper");
+const { getTimeNow, convertUnixTime } = require("../helpers/helper");
 const { Block } = require("./block");
 const { Transaction } = require("./transaction");
 const util = require("util");
+const { count } = require("console");
 
 class Blockchain {
   constructor() {
@@ -10,7 +11,7 @@ class Blockchain {
   }
 
   createGenesisBlock() {
-    const time = getTimeNow();
+    const time = convertUnixTime(getTimeNow());
     const propertyID = "prop1"; // for genesis block only
     const transaction = new Transaction(time, "johar", null);
     return new Block(time, "0", [transaction], propertyID);
@@ -18,7 +19,7 @@ class Blockchain {
 
   // When a new property is added to the blockchain -> (not sold yet)
   addNewBlock(propertyID, sellerID) {
-    const time = getTimeNow();
+    const time = convertUnixTime(getTimeNow());
     const prevHash = this.chain[this.chain.length - 1].hash;
 
     const transaction = new Transaction(time, sellerID, null);
@@ -34,7 +35,7 @@ class Blockchain {
       transactions[transactions.length - 1].buyerID === null
         ? transactions[transactions.length - 1].sellerID
         : transactions[transactions.length - 1].buyerID;
-    const time = getTimeNow();
+    const time = convertUnixTime(getTimeNow());
     const prevHash = this.chain[this.chain.length - 1].hash;
 
     const currentTransaction = new Transaction(
@@ -65,13 +66,21 @@ class Blockchain {
   }
 }
 
+
 const bc = new Blockchain();
 
 bc.addNewBlock("prop2", "saksham");
 bc.addNewBlock("prop3", "sheikh");
 bc.addExisitingBlock("prop2", "shaurya");
+<<<<<<< HEAD
 bc.addExisitingBlock("prop2", "saksham");
 // console.log(bc.getTransactionHistory("prop2"));
+=======
+bc.addExisitingBlock("prop2", "saksham")
+
+
+// console.log(bc.getTransactionHistory("prop2"))
+>>>>>>> aafab67fd10c94e5f82b13e1e0a9511c213fe474
 console.log(util.inspect(bc, false, null, true));
 
 module.exports = {
