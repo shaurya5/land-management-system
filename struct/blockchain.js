@@ -45,13 +45,8 @@ class Blockchain {
 
     // console.log("current trans: ", currentTransaction)
     // console.log("all transa: ", transactions)
-    transactions.push(currentTransaction)
-    const newBlock = new Block(
-      time,
-      prevHash,
-      transactions,
-      propertyID
-    );
+    transactions.push(currentTransaction);
+    const newBlock = new Block(time, prevHash, transactions, propertyID);
 
     this.chain.push(newBlock);
   }
@@ -75,8 +70,8 @@ const bc = new Blockchain();
 bc.addNewBlock("prop2", "saksham");
 bc.addNewBlock("prop3", "sheikh");
 bc.addExisitingBlock("prop2", "shaurya");
-bc.addExisitingBlock("prop2", "saksham")
-// console.log(bc.getTransactionHistory("prop2"))
+bc.addExisitingBlock("prop2", "saksham");
+// console.log(bc.getTransactionHistory("prop2"));
 console.log(util.inspect(bc, false, null, true));
 
 module.exports = {
