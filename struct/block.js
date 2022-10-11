@@ -4,11 +4,13 @@ const { getTimeNow } = require("../helpers/helper");
 class Block {
   constructor(timestamp, previousHash, transaction, propertyID) {
     this.propertyID = propertyID; // string
+    
     this.previousHash = previousHash; // string
     this.hash = this.calculateHash();
     this.timestamp = timestamp; // string
     this.transaction = transaction; // array of Transaction objects
     this.merkleRoot = this.calculateMerkleRoot();
+    this.version = this.transaction.length; // int
   }
 
   calculateHash() {
@@ -39,6 +41,8 @@ class Block {
     }
     return root[0].toString();
   }
+
+  
 }
 
 module.exports = {
