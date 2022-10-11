@@ -3,11 +3,11 @@ const { getTimeNow } = require("../helpers/helper");
 
 class Block {
   constructor(timestamp, previousHash, transaction, propertyID) {
-    this.timestamp = timestamp; // string
-    this.previousHash = previousHash; // string
-    this.transaction = transaction; // array of Transaction objects
     this.propertyID = propertyID; // string
+    this.previousHash = previousHash; // string
     this.hash = this.calculateHash();
+    this.timestamp = timestamp; // string
+    this.transaction = transaction; // array of Transaction objects
     this.merkleRoot = this.calculateMerkleRoot();
   }
 
