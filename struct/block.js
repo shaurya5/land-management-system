@@ -3,8 +3,7 @@ const { getTimeNow } = require("../helpers/helper");
 
 class Block {
   constructor(timestamp, previousHash, transaction, propertyID) {
-    this.propertyID = propertyID; // string
-    
+    this.propertyID = propertyID; // string 
     this.previousHash = previousHash; // string
     this.hash = this.calculateHash();
     this.timestamp = timestamp; // string
@@ -18,7 +17,8 @@ class Block {
       this.timestamp +
       this.propertyID +
       JSON.stringify(this.transaction) +
-      this.previousHash;
+      this.previousHash + 
+      this.merkleRoot;
     return SHA256(data).toString();
   }
 
@@ -40,9 +40,7 @@ class Block {
       root.unshift(temp);
     }
     return root[0].toString();
-  }
-
-  
+  } 
 }
 
 module.exports = {
