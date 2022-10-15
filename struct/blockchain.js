@@ -2,9 +2,11 @@ const { getTimeNow } = require("../helpers/helper");
 const { Block } = require("./block");
 const { Transaction } = require("./transaction");
 const util = require("util");
+const { DPOS } = require('../logic/dpos')
 
 class Blockchain {
   constructor() {
+    this.users = []
     this.chain = [this.createGenesisBlock()];
     this.pendingTransactions = [];
   }
@@ -12,8 +14,17 @@ class Blockchain {
   createGenesisBlock() {
     const time = getTimeNow();
     const propertyID = "prop1"; // for genesis block only
-    const transaction = new Transaction(time, "johar", null);
+    const sellerID = "123"
+    const transaction = new Transaction(time, sellerID, null);
+    this.users.push({
+      id: sellerID,
+      val: 50
+    })
     return new Block(time, "0", [transaction], propertyID);
+  }
+
+  getDelegatesList() {
+    return DPOS(this.users)
   }
 
   // When a new property is added to the blockchain -> (not sold yet)
@@ -24,12 +35,21 @@ class Blockchain {
     const transaction = new Transaction(time, sellerID, null);
     const newBlock = new Block(time, prevHash, [transaction], propertyID);
     this.chain.push(newBlock);
+    this.users.push({
+      id: sellerID,
+      val: 50
+    })
+    console.log("Block added!")
   }
 
   // When a user buys an existing property, we clone the last transaction of that property and update the buyerID
-  addExisitingBlock(propertyID, buyerID) {
+  addExisitingBlock(propertyID, buyerID, verifyID) {
+    const delegates = this.getDelegatesList()
+    if(!delegates.includes(verifyID)) {
+      console.log("Unauthorized!");
+      return;
+    }
     const transactions = this.getTransactionHistory(propertyID);
-    // console.log(transactions)
     let lastTransactionSellerID =
       transactions[transactions.length - 1].buyerID === null
         ? transactions[transactions.length - 1].sellerID
@@ -43,12 +63,11 @@ class Blockchain {
       buyerID
     );
 
-    // console.log("current trans: ", currentTransaction)
-    // console.log("all transa: ", transactions)
     transactions.push(currentTransaction);
     const newBlock = new Block(time, prevHash, transactions, propertyID);
 
     this.chain.push(newBlock);
+    console.log("Block added!")
   }
 
   // Gets all the transactions of a particular propertyID
@@ -56,11 +75,9 @@ class Blockchain {
     var transactionList = [];
     this.chain.forEach((block) => {
       if (block.propertyID === propertyID) {
-        // console.log(block.transaction)
         transactionList.push(block.transaction[block.transaction.length - 1]);
       }
     });
-    // console.log(util.inspect(transactionList, false, null, true));
     return transactionList;
   }
 }
@@ -72,7 +89,7 @@ bc.addNewBlock("prop3", "sheikh");
 bc.addExisitingBlock("prop2", "shaurya");
 bc.addExisitingBlock("prop2", "saksham");
 //console.log(bc.getTransactionHistory("prop2"));
- console.log(util.inspect(bc, false, null, true));
+// console.log(util.inspect(bc, false, null, true));
 
 module.exports = {
   Blockchain,
