@@ -1,4 +1,4 @@
-const { getTimeNow } = require("../helpers/helper");
+const { getTimeNow, getRandomInt } = require("../helpers/helper");
 const { Block } = require("./block");
 const { Transaction } = require("./transaction");
 const util = require("util");
@@ -37,7 +37,7 @@ class Blockchain {
     this.chain.push(newBlock);
     this.users.push({
       id: sellerID,
-      val: 50
+      val: getRandomInt(0,100)
     })
     console.log("Block added!")
   }
@@ -86,8 +86,8 @@ const bc = new Blockchain();
 
 bc.addNewBlock("prop2", "1234");
 bc.addNewBlock("prop3", "12345");
-bc.addExisitingBlock("prop2", "shaurya", "123");
-bc.addExisitingBlock("prop2", "saksham", "12345");
+bc.addExisitingBlock("prop2", "123456", "123");
+bc.addExisitingBlock("prop2", "1234", "12345");
 // console.log(bc.getTransactionHistory("prop2"));
 // console.log(util.inspect(bc, false, null, true));
 

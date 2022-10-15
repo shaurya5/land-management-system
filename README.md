@@ -3,10 +3,10 @@ Project Assignment for Blockchain course
 
 
 # Team Members - (Group 24)
-1. Saksham Bansal (2020A3PS2129H)
-2. Samarth Sharma (2020A3PS0615H)
-3. Shaurya Garg (2020A8PS2215H)
-4. Akshat Johar (2020A3PS1793H)
+1. Saksham Bansal `2020A3PS2129H`
+2. Samarth Sharma `2020A3PS0615H`
+3. Shaurya Garg `2020A8PS2215H`
+4. Akshat Johar `2020A3PS1793H`
 
 # Objective
 * This project consists of building a blockchain system for land management. 
