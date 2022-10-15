@@ -38,21 +38,22 @@ Here we have defined some utility functions for perusal in our project at variou
 * Function to calculate hash is defined which takes in the data as timestamp,propertyID, previoushash and merkle root of transactions
 * Merkle Root function takes in the array of transactions. It then pairs up the transacation as needed in a binary tree and hashes them pair-wise. Finally the root hash is returned which is included in the block structure after being hashed with the current hash.
 
-<img width="1440" alt="Screenshot 2022-10-15 at 9 29 08 PM" src="https://user-images.githubusercontent.com/85258581/195996230-60737e5f-1b83-4055-9c44-1260ef636447.png">
 
 ### blockchain.js
 * Blockchain class is created with its constructor calling the createGenesisBlock function
 * Inside Create Genesis Block we are passing the property ID as gicen by user and its own ID to transaction function (explained earlier)
 * A new block is created which is passed on with properties of timestamp, block number and values returned from transaction function
+* New users are added when a new block is added to the blockchain. Every user is assigned a random stake between 0 and 100 on creation.
+* Users with stake greater than or equal to the threshold are made the delegates.
 
-<img width="694" alt="Screenshot 2022-10-15 at 9 32 49 PM" src="https://user-images.githubusercontent.com/85258581/195996373-ce13c13a-3213-4b66-8ecb-f8418e4d08c8.png">
+**OUTPUT**
 
-<img width="956" alt="Screenshot 2022-10-15 at 9 33 55 PM" src="https://user-images.githubusercontent.com/85258581/195996391-76aa31ce-268f-4563-9e6f-4aaf7c0c8c85.png">
+![output](https://user-images.githubusercontent.com/73823079/195996766-e0ccc1c5-06f4-4661-a375-1695d65f56c8.png)
+![output](https://user-images.githubusercontent.com/73823079/195996706-294ef335-da9f-453d-b4e7-cce4a95c1d93.png)
 
-### transanction.js
+### transaction.js
 This class is used to specify the buyerID, sellerID, and the timestamp of the transaction that occured.
 
-<img width="642" alt="Screenshot 2022-10-15 at 9 29 28 PM" src="https://user-images.githubusercontent.com/85258581/195996205-46cc28c2-c809-4b55-a86e-3e35fc0ed642.png">
 
 
 
