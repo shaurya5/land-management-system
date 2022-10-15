@@ -5,13 +5,13 @@ const util = require("util");
 
 class Blockchain {
   constructor() {
-    this.chain = [this.createGenesisBlock()];
+    this.chain = [this.createGenesisBlock()]; // Primary Chain Of Blockchain
     this.pendingTransactions = [];
   }
 
   createGenesisBlock() {
-    const time = getTimeNow();
-    const propertyID = "prop1"; // for genesis block only
+    const time = getTimeNow(); // Returns Current Time
+    const propertyID = "prop1"; // For Genesis BLock Only
     const transaction = new Transaction(time, "johar", null);
     return new Block(time, "0", [transaction], propertyID);
   }
@@ -43,12 +43,10 @@ class Blockchain {
       buyerID
     );
 
-    // console.log("current trans: ", currentTransaction)
-    // console.log("all transa: ", transactions)
     transactions.push(currentTransaction);
-    const newBlock = new Block(time, prevHash, transactions, propertyID);
+    const newBlock = new Block(time, prevHash, transactions, propertyID); // Created Block which is to be added
 
-    this.chain.push(newBlock);
+    this.chain.push(newBlock); //  Block Added to Blockchain and becomes most recent block of the chain
   }
 
   // Gets all the transactions of a particular propertyID
@@ -71,9 +69,8 @@ bc.addNewBlock("prop2", "saksham");
 bc.addNewBlock("prop3", "sheikh");
 bc.addExisitingBlock("prop2", "shaurya");
 bc.addExisitingBlock("prop2", "saksham");
-console.log(bc.getTransactionHistory("prop2"));
-// console.log(util.inspect(bc, false, null, true));
-
+console.log(bc.getTransactionHistory("prop2")); // return transaction history of given property
+// console.log(util.inspect(bc, false, null, true));                       // returns the Blockchain
 module.exports = {
   Blockchain,
 };
