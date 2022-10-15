@@ -64,7 +64,7 @@ class Blockchain {
     );
 
     transactions.push(currentTransaction);
-    const newBlock = new Block(time, prevHash, transactions, propertyID);
+    const newBlock = new Block(time, prevHash, transactions, propertyID); // Created Block which is to be added
 
     this.chain.push(newBlock);
     console.log("Block added!")
