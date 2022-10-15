@@ -1,5 +1,7 @@
-const SHA256 = require("crypto-js/sha256"); // library used to get Hash Values from input values provided
-const { getTimeNow } = require("../helpers/helper"); //  Imported from helper.js file , used to return current time when a block is added
+// library used to get Hash Values from input values provided
+const SHA256 = require("crypto-js/sha256"); 
+// Imported from helper.js file , used to return current time when a block is added
+const { getTimeNow } = require("../helpers/helper"); 
 
 class Block {
   constructor(timestamp, previousHash, transaction, propertyID) {

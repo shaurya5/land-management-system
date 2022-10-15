@@ -13,11 +13,6 @@ function convertUnixTime(time) {
   return formattedTime;
 }
 
-function printBlockchain() {
-  // const bc = new Blockchain()
-  // console.log(util.inspect(bc, false, null, true));
-}
-
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -27,6 +22,5 @@ function getRandomInt(min, max) {
 module.exports = {
   getTimeNow,
   convertUnixTime,
-  printBlockchain,
   getRandomInt
 }

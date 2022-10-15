@@ -1,8 +1,8 @@
 const { getTimeNow, getRandomInt } = require("../helpers/helper");
 const { Block } = require("./block");
 const { Transaction } = require("./transaction");
-const util = require("util");
 const { DPOS } = require('../logic/dpos')
+const util = require('util')
 
 class Blockchain {
   constructor() {
@@ -89,7 +89,7 @@ bc.addNewBlock("prop3", "12345");
 bc.addExisitingBlock("prop2", "123456", "123");
 bc.addExisitingBlock("prop2", "1234", "12345");
 // console.log(bc.getTransactionHistory("prop2"));
-// console.log(util.inspect(bc, false, null, true));
+console.log(util.inspect(bc, false, null, true));
 
 module.exports = {
   Blockchain,
