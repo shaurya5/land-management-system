@@ -19,7 +19,8 @@ class Block {
       this.timestamp +
       this.propertyID +
       JSON.stringify(this.transaction) +
-      this.previousHash;
+      this.previousHash +
+      this.merkleRoot;
     return SHA256(data).toString();
   }
 
