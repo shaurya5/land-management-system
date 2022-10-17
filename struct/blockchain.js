@@ -32,8 +32,9 @@ class Blockchain {
     const time = getTimeNow();
     const prevHash = this.chain[this.chain.length - 1].hash;
 
-    const transaction = new Transaction(time, sellerID, null);
-    const newBlock = new Block(time, prevHash, [transaction], propertyID);
+    const unverifiedTransaction = new Transaction(time, sellerID, null);
+    const verifiedTransaction = this.mine(unverifiedTransaction)
+    const newBlock = new Block(time, prevHash, [verifiedTransaction], propertyID);
     this.chain.push(newBlock);
     this.users.push({
       id: sellerID,
@@ -62,8 +63,9 @@ class Blockchain {
       lastTransactionSellerID,
       buyerID
     );
-
-    transactions.push(currentTransaction);
+    
+    const verifiedTransaction = this.mine(currentTransaction)
+    transactions.push(verifiedTransaction);
     const newBlock = new Block(time, prevHash, transactions, propertyID); // Created Block which is to be added
 
     this.chain.push(newBlock);
@@ -79,6 +81,11 @@ class Blockchain {
       }
     });
     return transactionList;
+  }
+
+  mine(unverifiedTransaction) {
+    const verifiedTransaction = unverifiedTransaction
+    return verifiedTransaction
   }
 }
 
